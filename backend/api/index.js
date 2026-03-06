@@ -3,12 +3,15 @@ require("dotenv").config();
 
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 .then(() => console.log("MongoDB connected"))
-.catch((err) => console.log(err));
+.catch((err) => console.error("Mongo error:", err));
 
-const User = require("./models/user.model");
-const Note = require("./models/note.model")
+const User = require("../models/user.model");
+const Note = require("../models/note.model")
 
 const express = require("express");
 const cors = require("cors");
@@ -18,7 +21,7 @@ app.use(express.json());
 
 //jwt
 const jwt = require("jsonwebtoken");
-const { authenticateToken } = require("./utilities");
+const { authenticateToken } = require("../utilities");
 
 
 app.use(cors());
@@ -238,7 +241,7 @@ app.delete("/delete-note/:noteId", authenticateToken, async (req, res) => {
 app.put("/update-note-pinned/:noteId", authenticateToken, async (req, res) => {
     const noteId = req.params.noteId;
     const { isPinned } = req.body || {};
-    const user = req.user;
+    const { user } = req.user;
 
     if (typeof isPinned !== "boolean") {
         return res.status(400).json({
