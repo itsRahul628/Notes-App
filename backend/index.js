@@ -7,8 +7,8 @@ mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("MongoDB connected"))
 .catch((err) => console.log(err));
 
-const User = require("../models/user.model");
-const Note = require("../models/note.model")
+const User = require("./models/user.model");
+const Note = require("./models/note.model")
 
 const express = require("express");
 const cors = require("cors");
@@ -18,7 +18,7 @@ app.use(express.json());
 
 //jwt
 const jwt = require("jsonwebtoken");
-const { authenticateToken } = require("../utilities");
+const { authenticateToken } = require("./utilities");
 
 
 app.use(cors());
