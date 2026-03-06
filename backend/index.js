@@ -25,7 +25,7 @@ app.use(cors());
 
 
 app.get("/", (req, res) => {
-    res.json({data : "hello data"})
+  res.send("API Running");
 });
 
 //Backend ready!!!
