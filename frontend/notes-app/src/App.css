@@ -1,0 +1,53 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import "tailwindcss";
+
+@layer base {
+  html {
+    font-family: "Roboto", system-ui, sans-serif;
+  }
+
+  body {
+    /* Soft gradient background instead of flat white */
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #fdf2f8 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+@theme {
+  --color-primary: #2885FF;
+  --color-secondary: #EF863E;
+}
+
+@layer components {
+
+  /* Improved Input Style */
+  .input-box {
+    @apply w-full text-sm bg-white/80 backdrop-blur-sm 
+           border border-slate-200 
+           px-5 py-3 rounded-xl mb-4 
+           outline-none transition-all duration-200 
+           focus:ring-2 focus:ring-primary 
+           focus:border-primary shadow-sm;
+  }
+
+  /* Modern Button Style */
+  .btn-primary {
+    @apply w-full text-sm 
+           bg-gradient-to-r from-blue-600 to-indigo-600 
+           p-3 text-white rounded-xl my-2 
+           shadow-md transition-all duration-300 
+           hover:shadow-lg hover:scale-[1.02] 
+           active:scale-[0.98];
+  }
+
+  /* Icon Button Enhancement */
+  .icon-btn {
+    @apply text-xl text-slate-400 cursor-pointer 
+           transition-all duration-200 
+           hover:text-primary hover:scale-110;
+  }
+}
